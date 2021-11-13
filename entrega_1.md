@@ -16,10 +16,14 @@ db.iniciativasaprobadas.aggregate({$project:{'fieldType':{$type: 'status_date'}}
 ```javascript
 db.iniciativasaprobadas.aggregate({ $project: { date: { $dateFromString: { dateString: '$status_date' } } } })
 ```
--para poder agrupar por mes y por año se puede extraer los números de cada registro. Para hacer el 
+-para poder agrupar por mes y por año se puede extraer los números de cada registro. Para hacer lso números.
+
+una fecha tiene el formato: 'dia, 00 mes 20__ ...'
+nos importan los substrings de 5,2 y 7,2
+https://docs.mongodb.com/manual/reference/operator/aggregation/substr/
+
 
 ```javascript
-
 ```
 
 - agrupar por mes y año
