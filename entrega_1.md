@@ -33,5 +33,6 @@ FALTAN:
   - cuanto rarda entre presentarse y anunciarse
   - algo de partidos.
   - ver si hay nu partido que le interesa un tema específico.
+  - algo de laws mod :o chance AMLo tuvo algo que ver con eso. 
 
 
