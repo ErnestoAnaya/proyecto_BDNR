@@ -24,6 +24,7 @@ https://docs.mongodb.com/manual/reference/operator/aggregation/substr/
 
 
 ```javascript
+db.iniciativasaprovadas.aggregate({$addFields: { month: {$substr:['$status_date', 5,2] } } })
 ```
 
 - agrupar por mes y año
