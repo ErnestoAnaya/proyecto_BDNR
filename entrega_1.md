@@ -81,7 +81,7 @@ db.iniciativasaprobadas.aggregate(
  
   //Dividimons en "trimestres"
   {
-   $addField:
+   $addFields:
      {
        'trimestre' : {
          $switch: {
