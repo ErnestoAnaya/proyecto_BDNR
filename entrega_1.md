@@ -28,7 +28,7 @@ db.iniciativasaprobadas.aggregate({ $addFields: { 'month': { $substr: ['$status_
 ```javascript
 db.iniciativasaprobadas.aggregate({ $addFields: { 'month': { $substr: ['$status_date', 5, 2] } } }, 
                                   { $addFields: { 'year': { $substr: ['$status_date', 12, 4] } } }, 
-                                  {$addFields: {'year_int':{$toInt: '$year'} } },
+                                  { $addFields: {'year_int':{$toInt: '$year'} } },
                                   {
                                     $bucket: {
                                       groupBy: "$year_int",
@@ -75,22 +75,31 @@ db.iniciativasaprobadas.aggregate(
   // substr del mes y año. 
   {$addField:{"month":{$substr: ["$conv_date",5,2]}}}, //mes
   {$addField:{"year":{$substr: ["$conv_date",1,4]}}}, //año
+  { $addFields: {'year_int':{$toInt: '$year'} } },
+  { $addFields: {'month_int':{$toInt: '$month'} } },
  
  
   //Dividimons en "trimestres"
   {
-   $switch: {
+   $addField:
+     {
+       'trimestre' : {
+         $switch: {
       branches: [
-         { case: { '$month': {$eq: [ 01, 02, 03 ] }  }, then: "trim 1" },
-         { case: { '$month': {$eq: [ 04, 05, 06 ] }  }, then: "trim 2" },
-         { case: { '$month': {$eq: [ 07, 08, 09 ] }  }, then: "trim 3" },
-         { case: { '$month': {$eq: [ 10, 11, 12 ] }  }, then: "trim 4" }
-      ]
+         { case: { '$month': {$lt: 4 }  }, then: "trim 1" },
+         //{ case: { '$month': {$and : [] }  }, then: "trim 2" },
+         //{ case: { '$month': {$eq: [ 07, 08, 09 ] }  }, then: "trim 3" },
+         { case: { '$month': {$gt: 9 }  }, then: "trim 4" }
+         ],
+         default: 'abc'
+       }
+     }
    }
+   
   },
  
 //Agrupamos por team y contamos
-{$group:{_id:"$team","Twits":{$count:{}}}}
+{$group:{_id: {'$year_int',''},"Twits":{$count:{}}}}
  
 );
 ```
