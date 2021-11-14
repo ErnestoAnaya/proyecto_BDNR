@@ -69,34 +69,6 @@ FALTAN:
 
 
 ```javascript
-db.tweets.aggregate(
-  {$match:{"user.lang":"es"}}, //Jalamos solo hispanohablantes
- 
-  {$project:{"hora":{$substr: ["$created_at",11,8]}}}, //Sacamos solo la hora del tweet
- 
-  //Dividimons en "equipos" con un condicional
-  {$project:
-    {"team":
-      {$cond:
-        {if:{
-        $and: [
-        {$gte: [{$toInt:{$substr:["$hora",0,2]}},6]}, //Si la hora de su tweet es mayor o igual a 6
-        {$lte: [{$toInt:{$substr:["$hora",0,2]}},18]} //O menor o igual a 18 (consideramos 18 pm aún mañaneros, garantizamos hora < 19 )
-         ]
-       }
-      ,then: "Mañaneros", else:"Nocheros"
-    }
-  }
-}},
- 
-//Agrupamos por team y contamos
-{$group:{_id:"$team","Twits":{$count:{}}}}
- 
-);
-```
-
-
-```javascript
 db.iniciativasaprobadas.aggregate(
   //iría un pasar a isodate
   // substr del mes y año. 
