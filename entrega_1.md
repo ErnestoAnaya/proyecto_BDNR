@@ -15,6 +15,7 @@ una fecha tiene el formato: 'dia, 00 mes 20__ ...'
 nos importan los substrings de 5,2 y 7,2
 https://docs.mongodb.com/manual/reference/operator/aggregation/substr/
 
+- agrupar por mes y año
 
 ```javascript
 db.iniciativasaprobadas.aggregate({ $addFields: { 'month': { $substr: ['$status_date', 5, 2] } } }, 
@@ -22,9 +23,25 @@ db.iniciativasaprobadas.aggregate({ $addFields: { 'month': { $substr: ['$status_
                                   { $group: { _id: {'year':'$year','month':'$month'}, 'count': { $count: {} } } })
 ```
 
-- agrupar por mes y año
-FALTAN:
 - agrupar por sexenio
+
+```javascript
+db.iniciativasaprobadas.aggregate({ $addFields: { 'month': { $substr: ['$status_date', 5, 2] } } }, 
+                                  { $addFields: { 'year': { $substr: ['$status_date', 12, 4] } } }, 
+                                  {
+                                    $bucket: {
+                                      groupBy: "year",
+                                      boundaries: [0, 2018, 2022],
+                                      default: "Other",
+                                      output: {
+                                        "count": { $sum: 1 }
+                                      }
+                                    }
+                                  })
+```
+
+FALTAN:
+
 - agrupar por trimestre
 - agrupar por partido
 - ----
