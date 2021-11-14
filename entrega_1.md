@@ -31,7 +31,7 @@ db.iniciativasaprobadas.aggregate({ $addFields: { 'month': { $substr: ['$status_
                                   {$addFields: {'year_int':{$toInt: '$year'} } },
                                   {
                                     $bucket: {
-                                      groupBy: "year_int",
+                                      groupBy: "$year_int",
                                       boundaries: [0, 2019, 2022],
                                       default: "Other",
                                       output: {
