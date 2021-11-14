@@ -36,3 +36,8 @@ FALTAN:
   - algo de laws mod :o chance AMLo tuvo algo que ver con eso. 
 
 
+- preguntas selma
+  - buscar por tema, que temas hay, o hay alguna forma de ver los temas?
+  - que onda con las desechadas?
+
+
