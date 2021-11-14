@@ -42,6 +42,7 @@ db.iniciativasaprobadas.aggregate({ $addFields: { 'month': { $substr: ['$status_
 ```
 
 - agrupar por trimestre
+  - chance un addField: que pasa los primeros 4 meses y les da trimestre 1, y así. 
 
 ```javascript
 db.iniciativasaprobadas.aggregate({ $addFields: { 'month': { $substr: ['$status_date', 5, 2] } } }, 
@@ -67,3 +68,55 @@ FALTAN:
   - que onda con las desechadas?
 
 
+```javascript
+db.tweets.aggregate(
+  {$match:{"user.lang":"es"}}, //Jalamos solo hispanohablantes
+ 
+  {$project:{"hora":{$substr: ["$created_at",11,8]}}}, //Sacamos solo la hora del tweet
+ 
+  //Dividimons en "equipos" con un condicional
+  {$project:
+    {"team":
+      {$cond:
+        {if:{
+        $and: [
+        {$gte: [{$toInt:{$substr:["$hora",0,2]}},6]}, //Si la hora de su tweet es mayor o igual a 6
+        {$lte: [{$toInt:{$substr:["$hora",0,2]}},18]} //O menor o igual a 18 (consideramos 18 pm aún mañaneros, garantizamos hora < 19 )
+         ]
+       }
+      ,then: "Mañaneros", else:"Nocheros"
+    }
+  }
+}},
+ 
+//Agrupamos por team y contamos
+{$group:{_id:"$team","Twits":{$count:{}}}}
+ 
+);
+```
+
+
+```javascript
+db.iniciativasaprobadas.aggregate(
+  //iría un pasar a isodate
+  // substr del mes y año. 
+  {$project:{"hora":{$substr: ["$created_at",11,8]}}}, //Sacamos solo la hora del tweet
+ 
+ 
+  //Dividimons en "trimestres"
+  {
+   $switch: {
+      branches: [
+         { case: { '$month': {$eq: [ 01, 02, 03 ] }  }, then: "trim 1" },
+         { case: { '$month': {$eq: [ 04, 05, 06 ] }  }, then: "trim 2" },
+         { case: { '$month': {$eq: [ 07, 08, 09 ] }  },
+         { case: { '$month': {$eq: [ 10, 11, 12 ] }  }, then: "trim 4" }
+      ]
+   }
+  },
+ 
+//Agrupamos por team y contamos
+{$group:{_id:"$team","Twits":{$count:{}}}}
+ 
+);
+```
