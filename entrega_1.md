@@ -9,11 +9,6 @@ db.iniciativasaprobadas.find().count()
 db.iniciativasaprobadas.aggregate({$project:{'fieldType':{$type: 'status_date'}} })
 ```
 - cambiar las fechas de formato. no jala :(
-
-```javascript
-db.iniciativasaprobadas.aggregate({$addFields: { 'month': {$substr:['$status_date',5,2] } } },
-                                  {$addFields: { 'year': {$substr:['$status_date',12,4] } } })
-```
 -para poder agrupar por mes y por año se puede extraer los números de cada registro. Para hacer lso números.
 - substring del mes y año  (chance vale la pena usar un bucket)
 - ya agrupa por mes y año. 
