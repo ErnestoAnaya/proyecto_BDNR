@@ -28,10 +28,11 @@ db.iniciativasaprobadas.aggregate({ $addFields: { 'month': { $substr: ['$status_
 ```javascript
 db.iniciativasaprobadas.aggregate({ $addFields: { 'month': { $substr: ['$status_date', 5, 2] } } }, 
                                   { $addFields: { 'year': { $substr: ['$status_date', 12, 4] } } }, 
+                                  {$addFields: {'year_int':{$toInt: '$year'} } },
                                   {
                                     $bucket: {
-                                      groupBy: "year",
-                                      boundaries: [0, 2018, 2022],
+                                      groupBy: "year_int",
+                                      boundaries: [0, 2019, 2022],
                                       default: "Other",
                                       output: {
                                         "count": { $sum: 1 }
