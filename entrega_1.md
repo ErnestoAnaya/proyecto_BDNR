@@ -109,7 +109,7 @@ db.iniciativasaprobadas.aggregate(
       branches: [
          { case: { '$month': {$eq: [ 01, 02, 03 ] }  }, then: "trim 1" },
          { case: { '$month': {$eq: [ 04, 05, 06 ] }  }, then: "trim 2" },
-         { case: { '$month': {$eq: [ 07, 08, 09 ] }  },
+         { case: { '$month': {$eq: [ 07, 08, 09 ] }  }, then: "trim 3" },
          { case: { '$month': {$eq: [ 10, 11, 12 ] }  }, then: "trim 4" }
       ]
    }
