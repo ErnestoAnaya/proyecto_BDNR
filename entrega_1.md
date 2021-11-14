@@ -99,7 +99,7 @@ db.iniciativasaprobadas.aggregate(
   },
  
 //Agrupamos por team y contamos
-{$group:{_id: {'$year_int',''},"Twits":{$count:{}}}}
+{$group:{_id: {'$year_int','$trimestre'},"Twits":{$count:{}}}}
  
 );
 ```
