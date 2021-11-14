@@ -71,8 +71,10 @@ FALTAN:
 ```javascript
 db.iniciativasaprobadas.aggregate(
   //iría un pasar a isodate
+  { $addFields: { conv_date: { $toDate: "$status_date" } } },
   // substr del mes y año. 
-  {$project:{"hora":{$substr: ["$created_at",11,8]}}}, //Sacamos solo la hora del tweet
+  {$project:{"month":{$substr: ["$conv_date",4,2]}}}, //mes
+  {$project:{"year":{$substr: ["$conv_date",1,4]}}}, //año
  
  
   //Dividimons en "trimestres"
