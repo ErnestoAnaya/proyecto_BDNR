@@ -41,9 +41,17 @@ db.iniciativasaprobadas.aggregate({ $addFields: { 'month': { $substr: ['$status_
                                   })
 ```
 
+- agrupar por trimestre
+
+```javascript
+db.iniciativasaprobadas.aggregate({ $addFields: { 'month': { $substr: ['$status_date', 5, 2] } } }, 
+                                  { $addFields: { 'year': { $substr: ['$status_date', 12, 4] } } }, 
+                                  { $group: { _id: {'year':'$year','month':'$month'}, 'count': { $count: {} } } })
+```
+regresa: 28 en 2018 y 296 de 2019 en adelante
+
 FALTAN:
 
-- agrupar por trimestre
 - agrupar por partido
 - ----
 - 2 criterios
