@@ -42,6 +42,3 @@ FALTAN:
   - ver si hay nu partido que le interesa un tema específico.
 
 
-https://docs.mongodb.com/manual/reference/operator/aggregation/substr/
-
-
