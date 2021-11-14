@@ -73,7 +73,7 @@ db.iniciativasaprobadas.aggregate(
   //iría un pasar a isodate
   { $addFields: { conv_date: { $toDate: "$status_date" } } },
   // substr del mes y año. 
-  {$addField:{"month":{$substr: ["$conv_date",4,2]}}}, //mes
+  {$addField:{"month":{$substr: ["$conv_date",5,2]}}}, //mes
   {$addField:{"year":{$substr: ["$conv_date",1,4]}}}, //año
  
  
