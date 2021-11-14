@@ -44,6 +44,4 @@ FALTAN:
 
 https://docs.mongodb.com/manual/reference/operator/aggregation/substr/
 
-```javascript
-db.iniciativasaprobadas.aggregate({$project : { month : {$month : "$status_date"}, year : {$year :  "$status_date"} }})
-```
+
