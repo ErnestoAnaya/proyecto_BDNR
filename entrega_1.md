@@ -159,7 +159,7 @@ db.iniciativas_todos.aggregate({ $group: { _id: { 'status':'$_id.status'}, 'coun
 ```
 
 - 5 status
-  - aprobada: 1006
+  - aprobada: 1006  (faltan aprobadas que indica a que faltan partidos)
   - declaratoria: 18
   - desechada 282
   - pendiente: 5896
