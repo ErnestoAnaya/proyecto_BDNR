@@ -167,6 +167,11 @@ db.iniciativas_todos.aggregate({ $group: { _id: { 'status':'$_id.status'}, 'coun
   - pendiente: 5896
   - retirada: 584 
 
+12. Iniciativas donde forman parte los 6 partidos
+```javascript
+db.iniciativas_todos.find({'partidos':{$size:6}}).count()
+```
+
 - ----
 
 
