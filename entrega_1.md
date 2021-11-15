@@ -64,7 +64,8 @@ db.iniciativasaprobadas.aggregate(
          $switch: {
       branches: [
          { case: {  $lt: ['$month_int', 4] }, then: "trim 1" },
-         //{ case: { '$month': {$and : [] }  }, then: "trim 2" },
+         { case: { $and : [ {$gte : ['$month_id', 4]} ] },
+                            [ {$lte : ['$month_id', 6]} ] } ]}, then: "trim 3"},
          //{ case: { '$month': {$eq: [ 07, 08, 09 ] }  }, then: "trim 3" },
          { case: {  $gt: ['$month_int', 9] }, then: "trim 4" }
          ],
