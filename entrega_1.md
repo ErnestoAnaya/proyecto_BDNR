@@ -1,5 +1,5 @@
 ## proyecto BDNR 1ra entrega
-- contar cuantas iniciativas aprobadas tenemos
+1- contar cuantas iniciativas aprobadas tenemos
 ```javascript
 db.iniciativasaprobadas.find().count()
 1562
