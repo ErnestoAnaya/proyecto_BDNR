@@ -2,8 +2,9 @@
 1. contar cuantas iniciativas aprobadas tenemos
 ```javascript
 db.iniciativasaprobadas.find().count()
-2721
 ```
+1562
+
 2. checar tipo de las fechas
 ```javascript
 db.iniciativasaprobadas.aggregate({$project:{'fieldType':{$type: 'status_date'}} })
