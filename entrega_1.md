@@ -15,8 +15,8 @@ nos importan los substrings de 5,2 y 7,2
 
 
 ```javascript
-db.iniciativasaprobadas.aggregate({ $addFields: { 'month': { $substr: ['$status_date', 5, 2] } } }, 
-                                  { $addFields: { 'year': { $substr: ['$status_date', 12, 4] } } }, 
+db.iniciativasaprobadas.aggregate({ $addFields: { 'month': { $substr: ['$date_anounced', 5, 2] } } }, 
+                                  { $addFields: { 'year': { $substr: ['$date_anounced', 12, 4] } } }, 
                                   { $group: { _id: {'year':'$year','month':'$month'}, 'count': { $count: {} } } })
 ```
 
@@ -24,8 +24,8 @@ db.iniciativasaprobadas.aggregate({ $addFields: { 'month': { $substr: ['$status_
   - result que todos tienen date announced pero no status_date :(. me salieron 3 que no cumplíam con eso
 
 ```javascript
-db.iniciativasaprobadas.aggregate({ $addFields: { 'month': { $substr: ['$status_date', 5, 2] } } }, 
-                                  { $addFields: { 'year': { $substr: ['$status_date', 12, 4] } } }, 
+db.iniciativasaprobadas.aggregate({ $addFields: { 'month': { $substr: ['$date_anounced', 5, 2] } } }, 
+                                  { $addFields: { 'year': { $substr: ['$date_anounced', 12, 4] } } }, 
                                   { $addFields: {'year_int':{$toInt: '$year'} } },
                                   {
                                     $bucket: {
@@ -48,7 +48,7 @@ regresa: 28 en 2018 y 296 de 2019 en adelante
 ```javascript
 db.iniciativasaprobadas.aggregate(
   //iría un pasar a isodate
-  { $addFields: { conv_date: { $toDate: "$status_date" } } },
+  { $addFields: { conv_date: { $toDate: "$date_anounced" } } },
   // substr del mes y año. 
   { $addFields:{"month":{$substr: ["$conv_date",5,2]}}}, //mes
   { $addFields:{"year":{$substr: ["$conv_date",1,4]}}}, //año
