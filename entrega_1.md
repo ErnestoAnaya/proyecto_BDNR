@@ -134,7 +134,7 @@ db.iniciativas_todos.aggregate({ $group: { _id: { 'status':'$status'}, 'count': 
   - desechada 953 (419)
   - pendiente: 8381 
 
-10. Crear atributo partidos a cada coleccion para sacar de que partido es cada iniciativa
+10. Crear atributo partidos a cada coleccion para sacar de que partido es cada iniciativa y agregarlas a la coleccion iniciativas_todas
 
 ```javascript
 db.iniciativas_pan.aggregate( {$addFields: {'partido': pan } } )
