@@ -107,4 +107,11 @@ FALTA. junta equipo
 - TEMAS
   - checar las leyes mas repetidas. Bajo que presidente
   - buscar algo realcionado al COVID
-  - 
+
+todo
+- queries de conteo. 
+  - en sexenio checar la fecha que esté bien
+  - combinaciones : MARIO
+- Ver que onda con los partidos: YO
+- buscar keywords Covid  
+- leyes segun presidente. 
