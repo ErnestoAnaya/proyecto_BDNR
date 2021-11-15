@@ -148,7 +148,13 @@ db.iniciativas_mc.aggregate( {$addFields: {'partido': 'mc' } }, {$out: 'iniciati
 
 11. en vez de partido agregar un campo partidos que sea un arreglo de todos los partidos de una iniciativa
 
-
+```javascript
+db.iniciativas_todas.aggregate([
+         	{$group: 
+         		{_id: { id:'$id', title:'$title'}, partidos: { $addToSet: "$partido" } }
+         	}
+         ]);
+```
 
 - ----
 
