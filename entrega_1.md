@@ -145,23 +145,9 @@ db.iniciativas_pt.aggregate( {$addFields: {'partido': 'pt' } }, {$out: 'iniciati
 db.iniciativas_pvem.aggregate( {$addFields: {'partido': 'pvem' } }, {$out: 'iniciativas_todas'} )
 db.iniciativas_mc.aggregate( {$addFields: {'partido': 'mc' } }, {$out: 'iniciativas_todas'} )
 ```
-```javascript
-```
-```javascript
-```
-```javascript
-```
-```javascript
-```
-```javascript
-```
-```javascript
-```
+
 11. en vez de partido agregar un campo partidos que sea un arreglo de todos los partidos de una iniciativa
 
-```javascript
-db.iniciativas_mc.aggregate( {$addFields: {'partido': 'mc' } } )
-```
 
 
 - ----
