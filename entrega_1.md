@@ -9,13 +9,10 @@ db.iniciativasaprobadas.find().count()
 db.iniciativasaprobadas.aggregate({$project:{'fieldType':{$type: 'status_date'}} })
 ```
 
-- ya agrupa por mes y año. 
-
-una fecha tiene el formato: 'dia, 00 mes 20__ ...'
-nos importan los substrings de 5,2 y 7,2
-https://docs.mongodb.com/manual/reference/operator/aggregation/substr/
-
 - agrupar por mes y año
+
+nos importan los substrings de 5,2 y 7,2
+
 
 ```javascript
 db.iniciativasaprobadas.aggregate({ $addFields: { 'month': { $substr: ['$status_date', 5, 2] } } }, 
@@ -40,6 +37,8 @@ db.iniciativasaprobadas.aggregate({ $addFields: { 'month': { $substr: ['$status_
                                     }
                                   })
 ```
+regresa: 28 en 2018 y 296 de 2019 en adelante
+
 
 - agrupar por trimestre
   - chance un addField: que pasa los primeros 4 meses y les da trimestre 1, y así. 
@@ -79,7 +78,6 @@ db.iniciativasaprobadas.aggregate(
 {$group:{_id: {'year': '$year_int','trimestre': '$trimestre'},"Twits":{$count:{}}}});
 ```
 
-regresa: 28 en 2018 y 296 de 2019 en adelante
 
 FALTAN:
 
