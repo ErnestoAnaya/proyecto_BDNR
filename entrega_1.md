@@ -110,25 +110,9 @@ Partidos:
 - mc: 2778
 
 
-7. agrupar iniciativas individuales junto con el número de partidos. Luego contamos esos registros (es contar iniciativas)
 
-```javascript
-db.iniciativas_todos.aggregate({ $group: { _id: { 'id':'$id'}, 'count': { $count: {} } } }, {$count: 'count'})
-```
-- regresa 8575
 
-8. Contar iniciativas de cada partido (hay ids repetidos)
-
-```javascript
-db.iniciativas_todos.aggregate({$group: {_id: {id:'$id', status: '$status'}} }, { $group: { _id: { 'status':'$status'}, 'count': { $count: {} } } })
-```
-- resulta que hay 5 status  (falta no tomar en cuenta las del mismo id)
-  - aprobada: 1006
-  - declaratoria: 18
-  - desechada 282
-  - pendiente: 5896 
-
-9. Crear atributo partidos a cada coleccion para sacar de que partido es cada iniciativa y agregarlas a la coleccion iniciativas_todos
+7. Crear atributo partidos a cada coleccion para sacar de que partido es cada iniciativa y agregarlas a la coleccion iniciativas_todos
 
 nota: el ptimero es $out para sobreescribir la colección si ya existía
 
@@ -141,6 +125,24 @@ db.iniciativas_pt.aggregate( {$addFields: {'partido': 'pt' } }, {$merge: {into: 
 db.iniciativas_pvem.aggregate( {$addFields: {'partido': 'pvem' } }, {$merge: {into: 'iniciativas_todos'} } )
 db.iniciativas_mc.aggregate( {$addFields: {'partido': 'mc' } }, {$merge: {into: 'iniciativas_todos'} } )
 ```
+
+8. agrupar iniciativas individuales junto con el número de partidos. Luego contamos esos registros (es contar iniciativas)
+
+```javascript
+db.iniciativas_todos.aggregate({ $group: { _id: { 'id':'$id'}, 'count': { $count: {} } } }, {$count: 'count'})
+```
+- regresa 8575
+
+9. Contar iniciativas de cada partido (hay ids repetidos)
+
+```javascript
+db.iniciativas_todos.aggregate({$group: {_id: {id:'$id', status: '$status'}} }, { $group: { _id: { 'status':'$status'}, 'count': { $count: {} } } })
+```
+- resulta que hay 5 status  (falta no tomar en cuenta las del mismo id)
+  - aprobada: 1006
+  - declaratoria: 18
+  - desechada 282
+  - pendiente: 5896 
 
 10. en vez de partido agregar un campo partidos que sea un arreglo de todos los partidos de una iniciativa
 
