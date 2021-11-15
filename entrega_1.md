@@ -96,10 +96,14 @@ db.iniciativasaprobadas.aggregate({ $addFields: { 'month': { $substr: ['$date_an
                                   { $limit: 20})
 ```
 
+# Para encontrar todos los partidos
+
+Se va a contar las aprobadas y rechazadas para obtener el total de iniciativas. 
+
+
 FALTAN:
 
 - agrupar por partido
-- agrupar por ley que modifica
 
 
 - ----
