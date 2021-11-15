@@ -92,13 +92,19 @@ FALTAN:
 - 2 criterios
   - chance buscar rechazadas. ver que partidos tienen mas desechadas segun el partido y bajo que presidente
   - cuanto rarda entre presentarse y anunciarse
-  - algo de partidos.
-  - ver si hay nu partido que le interesa un tema específico.
-  - algo de laws mod :o chance AMLo tuvo algo que ver con eso. 
-
 
 - preguntas selma
   - buscar por tema, que temas hay, o hay alguna forma de ver los temas?
     - no hay catálogo de temas
   - que onda con las desechadas?
     - que ya quedó dice...
+
+
+FALTA. junta equipo
+- meter manualmetne los partidos. 
+- chance checar: 
+- mandar mensaje si el análisis es de lo que queramos. 
+- TEMAS
+  - checar las leyes mas repetidas. Bajo que presidente
+  - buscar algo realcionado al COVID
+  - 
