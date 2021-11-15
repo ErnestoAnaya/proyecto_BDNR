@@ -129,10 +129,10 @@ db.iniciativas_todos.aggregate({ $group: { _id: { 'id':'$id'}, 'count': { $count
 db.iniciativas_todos.aggregate({$group: {_id: {id:'$id', status: '$status'}} }, { $group: { _id: { 'status':'$status'}, 'count': { $count: {} } } })
 ```
 - resulta que hay 5 status  (falta no tomar en cuenta las del mismo id)
-  - aprobada: 1717 (como 1500 aprox)
-  - declaratoria: 28
-  - desechada 953 (419)
-  - pendiente: 8381 
+  - aprobada: 1006
+  - declaratoria: 18
+  - desechada 282
+  - pendiente: 5896 
 
 10. Crear atributo partidos a cada coleccion para sacar de que partido es cada iniciativa y agregarlas a la coleccion iniciativas_todos
 
