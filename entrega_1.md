@@ -54,8 +54,6 @@ db.iniciativasaprobadas.aggregate(
   { $addFields:{"year":{$substr: ["$conv_date",1,4]}}}, //año
   //{ $addFields: {'year_int':{$toInt: '$year'} } },
   { $addFields: {'month_int':{$toInt: '$month'} } },
- 
- 
   //Dividimons en "trimestres"
   {
    $addFields:
@@ -73,9 +71,7 @@ db.iniciativasaprobadas.aggregate(
        }
      }
    }
-   
   },
- 
 //Agrupamos por team y contamos
 {$group:{_id: {'year': '$year_int','trimestre': '$trimestre'},"Twits":{$count:{}}}});
 ```
