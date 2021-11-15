@@ -149,8 +149,8 @@ db.iniciativas_todos.aggregate({$group: {_id: {id:'$id', status: '$status'}} }, 
 
 ```javascript
 db.iniciativas_todos.aggregate([
-         	{$group: 
-         		{_id: { id:'$id', title:'$title', status:'$status', abstract:'$abstract'}, partidos: { $addToSet: "$partido" } }
+         	{$group:
+         		{_id: { id:'$id', title:'$title', status:'$status', abstract:'$abstract', turno:'$turno', laws_mod:"$laws_mod", status:"$status", status_date:"$status_date", state_pres:"$state_presented",sess_pres:"$session_presented"}, partidos: { $addToSet: "$partido" } }
          	},
           {$out: 'iniciativas_todos'}
          ]);
@@ -176,17 +176,7 @@ db.iniciativas_todos.find({'partidos':{$size:6}}).count()
 ```
 son 26 (pero hay unas que parecen ser la misma iniciativa, que indica que en propuestas de cada partido hay repetidos)
 - ej: en iniciativas_pri si bucas id 9230 y 9173
-
-sin id en group by para evitar registros con id diferente pero que son de la misma iniciativa
-
-```javascript
-db.iniciativas_todos.aggregate([
-         	{$group: 
-         		{_id: { title:'$title', status:'$status', abstract:'$abstract'}, partidos: { $addToSet: "$partido" } }
-         	},
-          {$out: 'iniciativas_todos'}
-         ]);
-```
+- para evitar esos repetidos se puede sacar el id del group. 
 
 
 - ----
