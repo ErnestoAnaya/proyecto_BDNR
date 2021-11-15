@@ -171,6 +171,7 @@ db.iniciativas_todos.aggregate({ $group: { _id: { 'status':'$_id.status'}, 'coun
 ```javascript
 db.iniciativas_todos.find({'partidos':{$size:6}}).count()
 ```
+son 26
 
 - ----
 
