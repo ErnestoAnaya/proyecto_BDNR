@@ -201,3 +201,4 @@ todo
 - leyes segun presidente. MARIO
 - leyes mas modificadas. - JORGE -
 - IDEA EXTRA: analizar iniciativas donde todos o al menos 4 partidos están involucrafos
+  - análisis de coalicianes
