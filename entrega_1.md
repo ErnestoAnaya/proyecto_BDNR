@@ -2,7 +2,7 @@
 - contar cuantas iniciativas aprobadas tenemos
 ```javascript
 db.iniciativasaprobadas.find().count()
-317
+1562
 ```
 - checar tipo de las fechas
 ```javascript
