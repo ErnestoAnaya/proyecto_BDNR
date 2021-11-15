@@ -134,16 +134,18 @@ db.iniciativas_todos.aggregate({ $group: { _id: { 'status':'$status'}, 'count': 
   - desechada 953 (419)
   - pendiente: 8381 
 
-10. Crear atributo partidos a cada coleccion para sacar de que partido es cada iniciativa y agregarlas a la coleccion iniciativas_todas
+10. Crear atributo partidos a cada coleccion para sacar de que partido es cada iniciativa y agregarlas a la coleccion iniciativas_todos
+
+nota: el ptimero es $out para sobreescribir la colección si ya existía
 
 ```javascript
 db.iniciativas_pan.aggregate( {$addFields: {'partido': 'pan' } }, {$out: 'iniciativas_todos'} )
-db.iniciativas_prd.aggregate( {$addFields: {'partido': 'prd' } }, {$out: 'iniciativas_todos'} )
-db.iniciativas_pan.aggregate( {$addFields: {'partido': 'pri' } }, {$out: 'iniciativas_todos'} )
-db.iniciativas_morena.aggregate( {$addFields: {'partido': 'morena' } }, {$out: 'iniciativas_todos'} )
-db.iniciativas_pt.aggregate( {$addFields: {'partido': 'pt' } }, {$out: 'iniciativas_todos'} )
-db.iniciativas_pvem.aggregate( {$addFields: {'partido': 'pvem' } }, {$out: 'iniciativas_todos'} )
-db.iniciativas_mc.aggregate( {$addFields: {'partido': 'mc' } }, {$out: 'iniciativas_todos'} )
+db.iniciativas_prd.aggregate( {$addFields: {'partido': 'prd' } }, {$merge: {into: 'iniciativas_todos'} } )
+db.iniciativas_pan.aggregate( {$addFields: {'partido': 'pri' } }, {$merge: {into: 'iniciativas_todos'} } )
+db.iniciativas_morena.aggregate( {$addFields: {'partido': 'morena' } }, {$merge: {into: 'iniciativas_todos'} } )
+db.iniciativas_pt.aggregate( {$addFields: {'partido': 'pt' } }, {$merge: {into: 'iniciativas_todos'} } )
+db.iniciativas_pvem.aggregate( {$addFields: {'partido': 'pvem' } }, {$merge: {into: 'iniciativas_todos'} } )
+db.iniciativas_mc.aggregate( {$addFields: {'partido': 'mc' } }, {$merge: {into: 'iniciativas_todos'} } )
 ```
 
 11. en vez de partido agregar un campo partidos que sea un arreglo de todos los partidos de una iniciativa
