@@ -82,6 +82,9 @@ db.iniciativasaprobadas.aggregate(
 FALTAN:
 
 - agrupar por partido
+- agrupar por ley que modifica
+
+
 - ----
 - 2 criterios
   - chance buscar rechazadas. ver que partidos tienen mas desechadas segun el partido y bajo que presidente
