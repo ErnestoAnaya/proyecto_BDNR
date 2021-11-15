@@ -137,25 +137,25 @@ db.iniciativas_todos.aggregate({ $group: { _id: { 'status':'$status'}, 'count': 
 10. Crear atributo partidos a cada coleccion para sacar de que partido es cada iniciativa y agregarlas a la coleccion iniciativas_todas
 
 ```javascript
-db.iniciativas_pan.aggregate( {$addFields: {'partido': pan } } )
+db.iniciativas_pan.aggregate( {$addFields: {'partido': 'pan' } } )
 ```
 ```javascript
-db.iniciativas_prd.aggregate( {$addFields: {'partido': prd } } )
+db.iniciativas_prd.aggregate( {$addFields: {'partido': 'prd' } } )
 ```
 ```javascript
-db.iniciativas_pan.aggregate( {$addFields: {'partido': pri } } )
+db.iniciativas_pan.aggregate( {$addFields: {'partido': 'pri' } } )
 ```
 ```javascript
-db.iniciativas_morena.aggregate( {$addFields: {'partido': morena } } )
+db.iniciativas_morena.aggregate( {$addFields: {'partido': 'morena' } } )
 ```
 ```javascript
-db.iniciativas_pt.aggregate( {$addFields: {'partido': pt } } )
+db.iniciativas_pt.aggregate( {$addFields: {'partido': 'pt' } } )
 ```
 ```javascript
-db.iniciativas_pvem.aggregate( {$addFields: {'partido': pvem } } )
+db.iniciativas_pvem.aggregate( {$addFields: {'partido': 'pvem' } } )
 ```
 ```javascript
-db.iniciativas_mc.aggregate( {$addFields: {'partido': mc } } )
+db.iniciativas_mc.aggregate( {$addFields: {'partido': 'mc' } } )
 ```
 
 
