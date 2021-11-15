@@ -38,7 +38,7 @@ db.iniciativasaprobadas.aggregate({ $addFields: { 'month': { $substr: ['$date_an
                                     }
                                   })
 ```
-regresa: 28 en 2018 y 296 de 2019 en adelante
+regresa: 198 en 2018 y 1372 de 2019 en adelante
 
 
 - agrupar por trimestre
