@@ -158,7 +158,11 @@ db.iniciativas_todos.aggregate([
           {$out: 'iniciativas_todos'}
          ]);
 ```
+12. iniciativas con atributo partidos. Contar cuantas por status
 
+```javascript
+db.iniciativas_todos.aggregate({ $group: { _id: { 'status':'$_id.status'}, 'count': { $count: {} } } })
+```
 - ----
 
 
