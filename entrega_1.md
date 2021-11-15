@@ -80,8 +80,8 @@ db.iniciativasaprobadas.aggregate(
 ```javascript
 db.iniciativasaprobadas.aggregate({ $addFields: { 'month': { $substr: ['$date_anounced', 5, 2] } } }, 
                                   { $addFields: { 'year': { $substr: ['$date_anounced', 12, 4] } } }, 
-                                  { $group: { _id: { 'ley': '$laws_mod' }, 'count': { $count: {} } } }.
-                                  { $sort: {'count': 1} })
+                                  { $group: { _id: { 'ley': '$laws_mod' }, 'count': { $count: {} } } },
+                                  { $sort: {'count': -1} })
 ```
 
 FALTAN:
