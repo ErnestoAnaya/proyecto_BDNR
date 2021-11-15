@@ -21,7 +21,7 @@ db.iniciativas_mc.aggregate( {$addFields: {'partido': 'mc' } }, {$merge: {into: 
 ```javascript
 db.iniciativas_todos.aggregate([
          	{$group:
-         		{_id: { id:'$id', title:'$title', status:'$status', abstract:'$abstract'}, partidos: { $addToSet: "$partido" } }
+         		{_id: { id:'$id', title:'$title', status:'$status', abstract:'$abstract', turno:'$turno', laws_mod:"$laws_mod", status:"$status", status_date:"$status_date", state_pres:"$state_presented",sess_pres:"$session_presented"}, partidos: { $addToSet: "$partido" } }
          	},
           {$out: 'iniciativas_todos'}
          ]);
