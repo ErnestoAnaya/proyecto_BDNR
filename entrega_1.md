@@ -95,7 +95,7 @@ db.iniciativasaprobadas.aggregate(
          { case: {  $lt: ['$month_int', 4] }, then: "trim 1" },
          { case: { $and : [ {$gte : ['$month_id', 4]} ] },
                           [ {$lte : ['$month_id', 6]} ] } ]}, then: "trim 2"},
-      default: 'abc'
+                          default: 'abc'
       }
     }
   }
