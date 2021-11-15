@@ -185,10 +185,10 @@ todo
 - queries de conteo. 
   - en sexenio checar la fecha que esté bien
   - combinaciones : MARIO
-- Ver que onda con los partidos: YO
-- visualisaciones. YO
+- Ver que onda con los partidos: ERNESTO
+- visualisaciones. ERNESTO
 - buscar keywords Covid. JORGE
 - leyes segun presidente. MARIO
 - leyes mas modificadas. - JORGE -
 - IDEA EXTRA: analizar iniciativas donde todos o al menos 4 partidos están involucrafos
-  - análisis de coalicianes
+  - análisis de coalicianes JOSE LUIS
