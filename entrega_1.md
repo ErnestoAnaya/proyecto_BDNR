@@ -154,7 +154,8 @@ db.iniciativas_mc.aggregate( {$addFields: {'partido': 'mc' } }, {$merge: {into: 
 db.iniciativas_todos.aggregate([
          	{$group: 
          		{_id: { id:'$id', title:'$title'}, partidos: { $addToSet: "$partido" } }
-         	}
+         	},
+          {$out: 'iniciativas_todos'}
          ]);
 ```
 
