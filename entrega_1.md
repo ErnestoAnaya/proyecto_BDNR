@@ -137,19 +137,19 @@ db.iniciativas_todos.aggregate({ $group: { _id: { 'status':'$status'}, 'count': 
 10. Crear atributo partidos a cada coleccion para sacar de que partido es cada iniciativa y agregarlas a la coleccion iniciativas_todas
 
 ```javascript
-db.iniciativas_pan.aggregate( {$addFields: {'partido': 'pan' } }, {$out: 'iniciativas_todas'} )
-db.iniciativas_prd.aggregate( {$addFields: {'partido': 'prd' } }, {$out: 'iniciativas_todas'} )
-db.iniciativas_pan.aggregate( {$addFields: {'partido': 'pri' } }, {$out: 'iniciativas_todas'} )
-db.iniciativas_morena.aggregate( {$addFields: {'partido': 'morena' } }, {$out: 'iniciativas_todas'} )
-db.iniciativas_pt.aggregate( {$addFields: {'partido': 'pt' } }, {$out: 'iniciativas_todas'} )
-db.iniciativas_pvem.aggregate( {$addFields: {'partido': 'pvem' } }, {$out: 'iniciativas_todas'} )
-db.iniciativas_mc.aggregate( {$addFields: {'partido': 'mc' } }, {$out: 'iniciativas_todas'} )
+db.iniciativas_pan.aggregate( {$addFields: {'partido': 'pan' } }, {$out: 'iniciativas_todos'} )
+db.iniciativas_prd.aggregate( {$addFields: {'partido': 'prd' } }, {$out: 'iniciativas_todos'} )
+db.iniciativas_pan.aggregate( {$addFields: {'partido': 'pri' } }, {$out: 'iniciativas_todos'} )
+db.iniciativas_morena.aggregate( {$addFields: {'partido': 'morena' } }, {$out: 'iniciativas_todos'} )
+db.iniciativas_pt.aggregate( {$addFields: {'partido': 'pt' } }, {$out: 'iniciativas_todos'} )
+db.iniciativas_pvem.aggregate( {$addFields: {'partido': 'pvem' } }, {$out: 'iniciativas_todos'} )
+db.iniciativas_mc.aggregate( {$addFields: {'partido': 'mc' } }, {$out: 'iniciativas_todos'} )
 ```
 
 11. en vez de partido agregar un campo partidos que sea un arreglo de todos los partidos de una iniciativa
 
 ```javascript
-db.iniciativas_todas.aggregate([
+db.iniciativas_todos.aggregate([
          	{$group: 
          		{_id: { id:'$id', title:'$title'}, partidos: { $addToSet: "$partido" } }
          	}
