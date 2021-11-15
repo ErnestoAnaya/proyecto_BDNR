@@ -126,7 +126,7 @@ db.iniciativas_todos.aggregate({ $group: { _id: { 'id':'$id'}, 'count': { $count
 9. Contar iniciativas de cada partido (hay ids repetidos)
 
 ```javascript
-db.iniciativas_todos.aggregate({$group: {_id: {id:'$id'}} }, { $group: { _id: { 'status':'$status'}, 'count': { $count: {} } } })
+db.iniciativas_todos.aggregate({$group: {_id: {id:'$id', status: '$status'}} }, { $group: { _id: { 'status':'$status'}, 'count': { $count: {} } } })
 ```
 - resulta que hay 5 status  (falta no tomar en cuenta las del mismo id)
   - aprobada: 1717 (como 1500 aprox)
