@@ -179,7 +179,25 @@ son 26 (pero hay unas que parecen ser la misma iniciativa, que indica que en pro
 - ej: en iniciativas_pri si bucas id 9230 y 9173
 - para evitar esos repetidos se puede sacar el id del group. 
 
+13. Iniciativas aprobadas durante el último año de EPN (antes del 01-12-2018)
+```javascript
+db.iniciativasaprobadas.aggregate(
+      { $addFields: { fecha: { $toDate: "$date_anounced" } } },
+      { $match: { fecha: {"$lt" : ISODate("2018-12-01T00:00:00")}}},
+      { $project:{_id : 1, fecha : 1} },
+      { $group: { _id: null, conteo: {$sum:1} } },
+      { $project: { _id: 0, conteo:1 } })
+```
 
+14. Iniciativas aprobadas durante la administración de AMLO
+```javascript
+db.iniciativasaprobadas.aggregate(
+      { $addFields: { fecha: { $toDate: "$date_anounced" } } },
+      { $match: { fecha: {"$gte" : ISODate("2018-12-01T00:00:00")}}},
+      { $project:{_id : 1, fecha : 1} },
+      { $group: { _id: null, conteo: {$sum:1} } },
+      { $project: { _id: 0, conteo:1 } })
+```
 - ----
 
 todo
