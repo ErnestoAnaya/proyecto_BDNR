@@ -163,6 +163,14 @@ db.iniciativas_todos.aggregate([
 ```javascript
 db.iniciativas_todos.aggregate({ $group: { _id: { 'status':'$_id.status'}, 'count': { $count: {} } } })
 ```
+
+- 5 status
+  - aprobada: 1006
+  - declaratoria: 18
+  - desechada 282
+  - pendiente: 5896
+  - retirada: 584 
+
 - ----
 
 
