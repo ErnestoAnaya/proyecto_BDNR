@@ -78,29 +78,7 @@ db.iniciativasaprobadas.aggregate(
 
 
 ```javascript
-db.iniciativasaprobadas.aggregate(
-  { $addFields: { conv_date: { $toDate: "$date_anounced" } } },
-  { $addFields:{"month":{$substr: ["$conv_date",5,2]}}}, //mes
-  { $addFields:{"year":{$substr: ["$conv_date",1,4]}}}, //año
-  { $addFields: {'month_int':{$toInt: '$month'} } },
-  {
-   $addFields:
-     {
-       'trimestre' : {
-         $switch: {
-      branches: [
-         { case: {  $lt: ['$month_int', 4] }, then: "trim 1" },
-         { case: { $and : [ {$gte : ['$month_id', 4]} ] },
-                            [ {$lte : ['$month_id', 6]} ] } ]}, then: "trim 3"},
-         //{ case: { '$month': {$eq: [ 07, 08, 09 ] }  }, then: "trim 3" },
-         { case: {  $gt: ['$month_int', 9] }, then: "trim 4" }
-         ],
-         default: 'abc'
-       }
-     }
-   }
-  },
-{$group:{_id: {'year': '$year_int','trimestre': '$trimestre'},"Twits":{$count:{}}}});
+db.iniciativasaprobadas.aggregate({ $addFields: { conv_date: { $toDate: "$date_anounced" } } }, { $addFields:{"month":{$substr: ["$conv_date",5,2]}}}, { $addFields:{"year":{$substr: ["$conv_date",1,4]}}}, //año { $addFields: {'month_int':{$toInt: '$month'} } }, { $addFields: { 'trimestre' : { $switch: { branches: [ { case: {  $lt: ['$month_int', 4] }, then: "trim 1" }, { case: { $and : [ {$gte : ['$month_id', 4]} ] }, [ {$lte : ['$month_id', 6]} ] } ]}, then: "trim 3"}, { case: { '$month': {$eq: [ 07, 08, 09 ] }  }, then: "trim 3" }, { case: {  $gt: ['$month_int', 9] }, then: "trim 4" } ], default: 'abc'}}}}, {$group:{_id: {'year': '$year_int','trimestre': '$trimestre'},"Twits":{$count:{}}}});
 ```
 
 
