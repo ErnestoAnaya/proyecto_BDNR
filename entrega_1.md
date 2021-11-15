@@ -83,7 +83,7 @@ db.iniciativasaprobadas.aggregate(
         }
      },
 //Agrupamos por team y contamos
-{$group:{_id: {'year': '$year_int','trimestre': '$trimestre'},"Twits":{$count:{}}}});
+{$group:{_id: {'year': '$year_int','trimestre': '$trimestre'},"count":{$count:{}}}});
 ```
 
 5. pt2
