@@ -65,7 +65,9 @@ FALTAN:
 
 - preguntas selma
   - buscar por tema, que temas hay, o hay alguna forma de ver los temas?
+    - no hay catálogo de temas
   - que onda con las desechadas?
+    - que ya quedó dice...
 
 
 ```javascript
