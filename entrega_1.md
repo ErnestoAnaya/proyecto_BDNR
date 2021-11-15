@@ -99,6 +99,15 @@ db.iniciativasaprobadas.aggregate({ $addFields: { 'month': { $substr: ['$date_an
 # Para encontrar todos los partidos
 
 Se va a contar las aprobadas y rechazadas para obtener el total de iniciativas. 
+Hay 1562 aprobadas y 419 desechadas, que lo trae a un total de 1981 propuestas.
+Partidos: 
+- PAN
+- PRD
+- PRI
+- morena
+- pt
+- pvem
+- mc
 
 
 FALTAN:
