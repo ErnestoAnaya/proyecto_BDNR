@@ -109,6 +109,24 @@ Partidos:
 - pvem: 742
 - mc: 2778
 
+```javascript
+db.iniciativas_todos.aggregate({ $group: { _id: { 'id':'$id'}, 'count': { $count: {} } } }, {$count: 'count'})
+```
+- regresa 8575
+
+```javascript
+db.iniciativas_todos.find().count()
+```
+- regresa 11569
+
+```javascript
+db.iniciativas_todos.aggregate({ $group: { _id: { 'status':'$status'}, 'count': { $count: {} } } })
+```
+- resulta que hay 5 status  (falta no tomar en cuenta las del mismo id)
+  - aprobada: 1717 (como 1500 aprox)
+  - declaratoria: 28
+  - desechada 953 (419)
+  - pendiente: 8381 
 
 - ----
 
