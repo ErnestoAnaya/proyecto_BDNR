@@ -109,15 +109,21 @@ Partidos:
 - pvem: 742
 - mc: 2778
 
+7. Contar iniciativas
+```javascript
+db.iniciativas_todos.find().count()
+```
+- regresa 11569
+
+
+8. agrupar iniciativas individuales junto con el número de partidos. Luego contamos esos registros (es contar iniciativas)
+
 ```javascript
 db.iniciativas_todos.aggregate({ $group: { _id: { 'id':'$id'}, 'count': { $count: {} } } }, {$count: 'count'})
 ```
 - regresa 8575
 
-```javascript
-db.iniciativas_todos.find().count()
-```
-- regresa 11569
+9. Contar iniciativas de cada partido (hay ids repetidos)
 
 ```javascript
 db.iniciativas_todos.aggregate({ $group: { _id: { 'status':'$status'}, 'count': { $count: {} } } })
