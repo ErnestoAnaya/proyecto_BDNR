@@ -44,31 +44,6 @@ db.iniciativasaprobadas.aggregate({ $addFields: { 'month': { $substr: ['$status_
 - agrupar por trimestre
   - chance un addField: que pasa los primeros 4 meses y les da trimestre 1, y así. 
 
-```javascript
-db.iniciativasaprobadas.aggregate({ $addFields: { 'month': { $substr: ['$status_date', 5, 2] } } }, 
-                                  { $addFields: { 'year': { $substr: ['$status_date', 12, 4] } } }, 
-                                  { $group: { _id: {'year':'$year','month':'$month'}, 'count': { $count: {} } } })
-```
-regresa: 28 en 2018 y 296 de 2019 en adelante
-
-FALTAN:
-
-- agrupar por partido
-- ----
-- 2 criterios
-  - chance buscar rechazadas. ver que partidos tienen mas desechadas segun el partido y bajo que presidente
-  - cuanto rarda entre presentarse y anunciarse
-  - algo de partidos.
-  - ver si hay nu partido que le interesa un tema específico.
-  - algo de laws mod :o chance AMLo tuvo algo que ver con eso. 
-
-
-- preguntas selma
-  - buscar por tema, que temas hay, o hay alguna forma de ver los temas?
-    - no hay catálogo de temas
-  - que onda con las desechadas?
-    - que ya quedó dice...
-
 
 ```javascript
 db.iniciativasaprobadas.aggregate(
@@ -103,3 +78,28 @@ db.iniciativasaprobadas.aggregate(
 //Agrupamos por team y contamos
 {$group:{_id: {'year': '$year_int','trimestre': '$trimestre'},"Twits":{$count:{}}}});
 ```
+
+```javascript
+db.iniciativasaprobadas.aggregate({ $addFields: { 'month': { $substr: ['$status_date', 5, 2] } } }, 
+                                  { $addFields: { 'year': { $substr: ['$status_date', 12, 4] } } }, 
+                                  { $group: { _id: {'year':'$year','month':'$month'}, 'count': { $count: {} } } })
+```
+regresa: 28 en 2018 y 296 de 2019 en adelante
+
+FALTAN:
+
+- agrupar por partido
+- ----
+- 2 criterios
+  - chance buscar rechazadas. ver que partidos tienen mas desechadas segun el partido y bajo que presidente
+  - cuanto rarda entre presentarse y anunciarse
+  - algo de partidos.
+  - ver si hay nu partido que le interesa un tema específico.
+  - algo de laws mod :o chance AMLo tuvo algo que ver con eso. 
+
+
+- preguntas selma
+  - buscar por tema, que temas hay, o hay alguna forma de ver los temas?
+    - no hay catálogo de temas
+  - que onda con las desechadas?
+    - que ya quedó dice...
