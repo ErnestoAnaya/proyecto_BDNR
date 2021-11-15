@@ -109,7 +109,7 @@ Partidos:
 - pvem: 742
 - mc: 2778
 
-
+Para pasar 
 
 
 7. Crear atributo partidos a cada coleccion para sacar de que partido es cada iniciativa y agregarlas a la coleccion iniciativas_todos
@@ -125,6 +125,7 @@ db.iniciativas_pt.aggregate( {$addFields: {'partido': 'pt' } }, {$merge: {into: 
 db.iniciativas_pvem.aggregate( {$addFields: {'partido': 'pvem' } }, {$merge: {into: 'iniciativas_todos'} } )
 db.iniciativas_mc.aggregate( {$addFields: {'partido': 'mc' } }, {$merge: {into: 'iniciativas_todos'} } )
 ```
+----
 
 8. agrupar iniciativas individuales junto con el número de partidos. Luego contamos esos registros (es contar iniciativas)
 
@@ -189,7 +190,6 @@ db.iniciativas_todos.aggregate([
 
 
 - ----
-
 
 todo
 - queries de conteo. 
