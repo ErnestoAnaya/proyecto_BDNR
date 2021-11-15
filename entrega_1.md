@@ -109,21 +109,15 @@ Partidos:
 - pvem: 742
 - mc: 2778
 
-7. Contar iniciativas
-```javascript
-db.iniciativas_todos.find().count()
-```
-- regresa 11569
 
-
-8. agrupar iniciativas individuales junto con el número de partidos. Luego contamos esos registros (es contar iniciativas)
+7. agrupar iniciativas individuales junto con el número de partidos. Luego contamos esos registros (es contar iniciativas)
 
 ```javascript
 db.iniciativas_todos.aggregate({ $group: { _id: { 'id':'$id'}, 'count': { $count: {} } } }, {$count: 'count'})
 ```
 - regresa 8575
 
-9. Contar iniciativas de cada partido (hay ids repetidos)
+8. Contar iniciativas de cada partido (hay ids repetidos)
 
 ```javascript
 db.iniciativas_todos.aggregate({$group: {_id: {id:'$id', status: '$status'}} }, { $group: { _id: { 'status':'$status'}, 'count': { $count: {} } } })
@@ -134,7 +128,7 @@ db.iniciativas_todos.aggregate({$group: {_id: {id:'$id', status: '$status'}} }, 
   - desechada 282
   - pendiente: 5896 
 
-10. Crear atributo partidos a cada coleccion para sacar de que partido es cada iniciativa y agregarlas a la coleccion iniciativas_todos
+9. Crear atributo partidos a cada coleccion para sacar de que partido es cada iniciativa y agregarlas a la coleccion iniciativas_todos
 
 nota: el ptimero es $out para sobreescribir la colección si ya existía
 
@@ -148,7 +142,7 @@ db.iniciativas_pvem.aggregate( {$addFields: {'partido': 'pvem' } }, {$merge: {in
 db.iniciativas_mc.aggregate( {$addFields: {'partido': 'mc' } }, {$merge: {into: 'iniciativas_todos'} } )
 ```
 
-11. en vez de partido agregar un campo partidos que sea un arreglo de todos los partidos de una iniciativa
+10. en vez de partido agregar un campo partidos que sea un arreglo de todos los partidos de una iniciativa
 
 ```javascript
 db.iniciativas_todos.aggregate([
@@ -158,7 +152,7 @@ db.iniciativas_todos.aggregate([
           {$out: 'iniciativas_todos'}
          ]);
 ```
-12. iniciativas con atributo partidos. Contar cuantas por status
+11. iniciativas con atributo partidos. Contar cuantas por status
 
 ```javascript
 db.iniciativas_todos.aggregate({ $group: { _id: { 'status':'$_id.status'}, 'count': { $count: {} } } })
