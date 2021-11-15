@@ -21,6 +21,7 @@ db.iniciativasaprobadas.aggregate({ $addFields: { 'month': { $substr: ['$status_
 ```
 
 - agrupar por sexenio
+  - result que todos tienen date announced pero no status_date :(. me salieron 3 que no cumplíam con eso
 
 ```javascript
 db.iniciativasaprobadas.aggregate({ $addFields: { 'month': { $substr: ['$status_date', 5, 2] } } }, 
