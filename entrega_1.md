@@ -113,5 +113,6 @@ todo
   - en sexenio checar la fecha que esté bien
   - combinaciones : MARIO
 - Ver que onda con los partidos: YO
-- buscar keywords Covid  
-- leyes segun presidente. 
+- buscar keywords Covid. JORGE
+- leyes segun presidente. MARIO 
+- leyes mas modificadas. -  -
