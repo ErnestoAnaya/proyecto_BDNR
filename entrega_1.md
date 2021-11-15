@@ -134,6 +134,32 @@ db.iniciativas_todos.aggregate({ $group: { _id: { 'status':'$status'}, 'count': 
   - desechada 953 (419)
   - pendiente: 8381 
 
+10. Crear atributo partidos a cada coleccion para sacar de que partido es cada iniciativa
+
+```javascript
+db.iniciativas_pri.aggregate( {$addFields: {'partido': pan } } )
+```
+```javascript
+db.iniciativas_pri.aggregate( {$addFields: {'partido': prd } } )
+```
+```javascript
+db.iniciativas_pri.aggregate( {$addFields: {'partido': pri } } )
+```
+```javascript
+db.iniciativas_pri.aggregate( {$addFields: {'partido': morena } } )
+```
+```javascript
+db.iniciativas_pri.aggregate( {$addFields: {'partido': pt } } )
+```
+```javascript
+db.iniciativas_pri.aggregate( {$addFields: {'partido': pvem } } )
+```
+```javascript
+db.iniciativas_pri.aggregate( {$addFields: {'partido': mc } } )
+```
+
+
+
 - ----
 
 
