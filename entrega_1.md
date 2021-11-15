@@ -86,12 +86,6 @@ db.iniciativasaprobadas.aggregate(
 {$group:{_id: {'year': '$year_int','trimestre': '$trimestre'},"count":{$count:{}}}});
 ```
 
-5. pt2
-```javascript
-db.iniciativasaprobadas.aggregate( { $addFields: { conv_date: { $toDate: "$date_anounced" } } }, { $addFields:{"month":{$substr: ["$conv_date",5,2]}}}, { $addFields:{"year":{$substr: ["$conv_date",1,4]}}}, { $addFields: {'month_int':{$toInt: '$month'} } }, { $addFields: { 'trimestre' : { $switch: { branches: [ { { case: {  $lt: ['$month_int', 4] }, then: "trim 1" }, { case: { $and : [ {$gte : ['$month_id', 4]} ] }, [ {$lte : ['$month_id', 6]} ]}, then: "trim 2" }, default: 'abc' } } } }, {$group:{_id: {'year': '$year_int','trimestre': '$trimestre'},"Twits":{$count:{}}}});
-```
-
-
 6. 20 leyes mas modificadas
 
 ```javascript
