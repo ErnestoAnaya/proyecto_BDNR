@@ -138,24 +138,24 @@ db.iniciativas_todos.aggregate({ $group: { _id: { 'status':'$status'}, 'count': 
 
 ```javascript
 db.iniciativas_pan.aggregate( {$addFields: {'partido': 'pan' } }, {$out: 'iniciativas_todas'} )
-```
-```javascript
 db.iniciativas_prd.aggregate( {$addFields: {'partido': 'prd' } }, {$out: 'iniciativas_todas'} )
-```
-```javascript
 db.iniciativas_pan.aggregate( {$addFields: {'partido': 'pri' } }. {$out: 'iniciativas_todas'} )
-```
-```javascript
 db.iniciativas_morena.aggregate( {$addFields: {'partido': 'morena' } }, {$out: 'iniciativas_todas'} )
-```
-```javascript
 db.iniciativas_pt.aggregate( {$addFields: {'partido': 'pt' } }, {$out: 'iniciativas_todas'} )
-```
-```javascript
 db.iniciativas_pvem.aggregate( {$addFields: {'partido': 'pvem' } }, {$out: 'iniciativas_todas'} )
+db.iniciativas_mc.aggregate( {$addFields: {'partido': 'mc' } }, {$out: 'iniciativas_todas'} )
 ```
 ```javascript
-db.iniciativas_mc.aggregate( {$addFields: {'partido': 'mc' } }, {$out: 'iniciativas_todas'} )
+```
+```javascript
+```
+```javascript
+```
+```javascript
+```
+```javascript
+```
+```javascript
 ```
 11. en vez de partido agregar un campo partidos que sea un arreglo de todos los partidos de una iniciativa
 
