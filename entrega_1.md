@@ -56,21 +56,32 @@ db.iniciativasaprobadas.aggregate(
   { $addFields: {'month_int':{$toInt: '$month'} } },
   //Dividimons en "trimestres"
   {
-  $addFields:
-  {
-    'trimestre' : {
-      $switch: {
-        branches: [
+      $addFields:
         {
-          { case: {  $lt: ['$month_int', 4] }, then: "trim 1" },
-          { case: { $and : [ {$gte : ['$month_id', 4]} ] },
-          [ {$lte : ['$month_id', 6]} ]}, then: "trim 2"
-          },
-          default: 'abc'
+          "addFields" :
+          {
+            $switch:
+              {
+                branches: [
+                  {
+                    case: { $gte : [ '$month_int', 10 ] },
+                    then: "trim 4"
+                  },
+                  {
+                    case: { $and : [ { $gte : [ '$month_int', 7 ] },
+                                     { $lt : [ '$month_int', 10 ] } ] },
+                    then: "trim 3"
+                  },
+                  {
+                    case: { $lt : [ '$month_int', 3 ] },
+                    then: "trim 1"
+                  }
+                ],
+                default: "trim 2"
+              }
+           }
         }
-      }
-    }
-  },
+     },
 //Agrupamos por team y contamos
 {$group:{_id: {'year': '$year_int','trimestre': '$trimestre'},"Twits":{$count:{}}}});
 ```
