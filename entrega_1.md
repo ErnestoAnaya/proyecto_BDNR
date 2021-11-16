@@ -242,10 +242,10 @@ db.iniciativasaprobadas.aggregate(
           {$group:{_id: {'year': '$year_int','trimestre': '$trimestre'},"count":{$count:{}}}})
 ```
 Periodos definidos para contar por trimestre.
-AÑO 2018: { $match: { conv_date: {"$gte" : ISODate("2018-01-01T00:00:00"), "$lt" : ISODate("2018-12-01T00:00:00")}}} //ÚLTIMO AÑO DE EPN
-AÑO 2019: { $match: { conv_date: {"$gte" : ISODate("2018-12-01T00:00:00"), "$lte" : ISODate("2019-12-31T00:00:00")}}} //AMLO AÑO 1
-AÑO 2020: { $match: { conv_date: {"$gte" : ISODate("2020-01-01T00:00:00"), "$lte" : ISODate("2020-12-31T00:00:00")}}} //AMLO AÑO 2
-AÑO 2021: { $match: { conv_date: {"$gte" : ISODate("2021-01-01T00:00:00"), "$lte" : ISODate("2021-11-17T00:00:00")}}} //LO QUE LLEVAMOS DE AMLO AÑO 3
+  - AÑO 2018: { $match: { conv_date: {"$gte" : ISODate("2018-01-01T00:00:00"), "$lt" : ISODate("2018-12-01T00:00:00")}}} //ÚLTIMO AÑO DE EPN
+  - AÑO 2019: { $match: { conv_date: {"$gte" : ISODate("2018-12-01T00:00:00"), "$lte" : ISODate("2019-12-31T00:00:00")}}} //AMLO AÑO 1
+  - AÑO 2020: { $match: { conv_date: {"$gte" : ISODate("2020-01-01T00:00:00"), "$lte" : ISODate("2020-12-31T00:00:00")}}} //AMLO AÑO 2
+  - AÑO 2021: { $match: { conv_date: {"$gte" : ISODate("2021-01-01T00:00:00"), "$lte" : ISODate("2021-11-17T00:00:00")}}} //LO QUE LLEVAMOS DE AMLO AÑO 3
 
 Leyes más modificadas según el sexenio.
 
