@@ -276,11 +276,11 @@ todo
   - combinaciones : MARIO
 - Ver que onda con los partidos: ERNESTO
 - visualisaciones. ERNESTO
-- buscar keywords Covid. JORGE
+- buscar keywords Covid. JORGE, chuy
 - leyes segun presidente. MARIO
 - leyes mas modificadas. - JORGE -
 - IDEA EXTRA: analizar iniciativas donde todos o al menos 4 partidos están involucrafos
-  - análisis de coalicianes JOSE LUIS
+  - análisis de coalicianes JOSE LUIS, chuy
 
 ```javascript
   db.iniciativas_todos.find({'partidos.3':{"$exists":true}}).count()
