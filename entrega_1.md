@@ -198,6 +198,76 @@ db.iniciativasaprobadas.aggregate(
       { $group: { _id: null, conteo: {$sum:1} } },
       { $project: { _id: 0, conteo:1 } })
 ```
+# COMBINACIONES
+15. Conteo de iniciativas aprobadas por trimestre para comparación de último año de EPN vs administración de AMLO
+```javascript
+          db.iniciativasaprobadas.aggregate(
+            //iría un pasar a isodate
+            { $addFields: { conv_date: { $toDate: "$date_anounced" } } },
+            // substr del mes y año. 
+            { $addFields:{"month":{$substr: ["$conv_date",5,2]}}}, //mes
+            { $addFields:{"year":{$substr: ["$conv_date",1,4]}}}, //año
+            //{ $addFields: {'year_int':{$toInt: '$year'} } },
+            { $addFields: {'month_int':{$toInt: '$month'} } },
+            //Dividimons en "trimestres"
+            {
+                $addFields:
+                  {
+                    "trimestre" :
+                    {
+                      $switch:
+                        {
+                          branches: [
+                            {
+                              case: { $gte : [ '$month_int', 10 ] },
+                              then: "trim 4"
+                            },
+                            {
+                              case: { $and : [ { $gte : [ '$month_int', 7 ] },
+                                               { $lt : [ '$month_int', 10 ] } ] },
+                              then: "trim 3"
+                            },
+                            {
+                              case: { $lt : [ '$month_int', 3 ] },
+                              then: "trim 1"
+                            }
+                          ],
+                          default: "trim 2"
+                        }
+                     }
+                  }
+               },
+          //Agrupamos por team y contamos
+          { $match: { conv_date: START_DATE, "$lte" : END_DATE)}}}, //OJO! ESTO SE MODIFICA PARA CADA BÚSQUEDA (PERIODOS SE MUESTRAN ABAJO)
+          {$group:{_id: {'year': '$year_int','trimestre': '$trimestre'},"count":{$count:{}}}})
+```
+Periodos definidos para contar por trimestre.
+AÑO 2018: { $match: { conv_date: {"$gte" : ISODate("2018-01-01T00:00:00"), "$lt" : ISODate("2018-12-01T00:00:00")}}} //ÚLTIMO AÑO DE EPN
+AÑO 2019: { $match: { conv_date: {"$gte" : ISODate("2018-12-01T00:00:00"), "$lte" : ISODate("2019-12-31T00:00:00")}}} //AMLO AÑO 1
+AÑO 2020: { $match: { conv_date: {"$gte" : ISODate("2020-01-01T00:00:00"), "$lte" : ISODate("2020-12-31T00:00:00")}}} //AMLO AÑO 2
+AÑO 2021: { $match: { conv_date: {"$gte" : ISODate("2021-01-01T00:00:00"), "$lte" : ISODate("2021-11-17T00:00:00")}}} //LO QUE LLEVAMOS DE AMLO AÑO 3
+
+Leyes más modificadas según el sexenio.
+
+16. 20 leyes más modificadas último año de EPN
+```javascript
+db.iniciativasaprobadas.aggregate(
+        { $addFields: { fecha: { $toDate: "$date_anounced" } } },
+        { $match: { fecha: {"$lt" : ISODate("2018-12-01T00:00:00")}}},
+        { $group: { _id: { 'ley': '$laws_mod' }, 'count': { $count: {} } } },
+        { $sort: {'count': -1} },
+        { $limit: 20})
+```
+17. 20 leyes más modificadas administración de AMLO
+```javascript
+db.iniciativasaprobadas.aggregate(
+        { $addFields: { fecha: { $toDate: "$date_anounced" } } },
+        { $match: { fecha: {"$gte" : ISODate("2018-12-01T00:00:00")}}},
+        { $group: { _id: { 'ley': '$laws_mod' }, 'count': { $count: {} } } },
+        { $sort: {'count': -1} },
+        { $limit: 20})
+```
+
 - ----
 
 todo
