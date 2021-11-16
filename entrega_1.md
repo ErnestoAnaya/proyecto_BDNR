@@ -286,4 +286,5 @@ todo
   db.iniciativas_todos.find({'partidos.3':{"$exists":true}}).count()
 ```
 - Existen 303 en las cuales al menos cuatro de los seis partidos participan, analizar en las cuales esta al menos 1 de la oposicion + 1 de morena
+- coaliciones. 
 
