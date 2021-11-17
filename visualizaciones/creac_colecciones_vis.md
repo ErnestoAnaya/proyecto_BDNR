@@ -81,6 +81,7 @@ db.iniciativas_morena.aggregate({$match: {'status': 'Aprobada'}}, {$count: 'More
 ```
 
 Ya se crearon todas las colecciones necesarias para las visualizaciones.
+nota: mongoexport se usa en la terminal
 
 
 Para convertir las colecciones de jsons a csv
