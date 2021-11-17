@@ -162,4 +162,11 @@ mongoexport --host localhost --db apilegislativo --collection leyes_vis --type=c
 
 mongoexport --host localhost --db apilegislativo --collection partidos_vis --type=csv --out partidos_vis.csv --fields partido,count
 
+mongoexport --host localhost --db apilegislativo --collection sexenio_des_vis --type=csv --out sexenios_vis.csv --fields _id,count
+
+mongoexport --host localhost --db apilegislativo --collection trimestres_des_vis --type=csv --out trimestres_vis.csv --fields _id,count
+
+mongoexport --host localhost --db apilegislativo --collection leyes_des_vis --type=csv --out leyes_vis.csv --fields _id,count
+
+mongoexport --host localhost --db apilegislativo --collection partidos_des_vis --type=csv --out partidos_vis.csv --fields partido,count
 ```
