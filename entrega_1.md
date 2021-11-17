@@ -63,7 +63,7 @@ db.iniciativasaprobadas.aggregate(
   // substr del mes y año.
   {$addFields: {month: {$substr: ["$conv_date", 5, 2]}}}, //mes
   {$addFields: {year: {$substr: ["$conv_date", 0, 4]}}}, //año
-  {$addFields: {'year_int':{$toInt: '$year'} } },
+  {$addFields: {year_int: {$toInt: "$year"}}},
   {$addFields: {month_int: {$toInt: "$month"}}},
   //Dividimons en "trimestres"
   {
@@ -383,7 +383,22 @@ db.iniciativasaprobadas.aggregate(
 );
 ```
 
-19. Análisis de propuestas por coalición y propuestas en donde ambas coinciden
+19. Número de propuestas aprobadas antes del primer confinamiento el 16 de Marzo del 2020 por añ0
+
+```javascript
+db.iniciativasaprobadas.aggregate(
+  {
+    $addFields: {
+      fecha: {$toDate: "$date_anounced"},
+      year: {$substr: ["$date_anounced", 12, 4]},
+    },
+  },
+  {$match: {fecha: {$lte: ISODate("2020-03-16T00:00:00")}}},
+  {$group: {_id: {year: "$year"}, Propuestas: {$sum: 1}}}
+);
+```
+
+20. Análisis de propuestas por coalición y propuestas en donde ambas coinciden
 
 ```Javascript
   const coaliciones = [
