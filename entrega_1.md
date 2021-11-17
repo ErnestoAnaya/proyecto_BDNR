@@ -401,8 +401,8 @@ db.iniciativas_todos.find({partidos:{$nin:["pan","pri","prd","mc"]}})
 
 db.iniciativas_todos.find({$and:[{'partidos.1':{"$exists":true}},
 						{$and:[
-						       {$or:[{'partidos':'pri'},{'partidos':'pan'},{'partidos':'prd'},{'partidos':'mc'}]},
-							    {$or:[{'partidos':'morena'},{'partidos':'pvem'},{'partidos':'pt'}]}]}]})
+						       	{$or:[{'partidos':'pri'},{'partidos':'pan'},{'partidos':'prd'},{'partidos':'mc'}]},
+							{$or:[{'partidos':'morena'},{'partidos':'pvem'},{'partidos':'pt'}]}]}]})
 
 
 db.iniciativas_todos.find({partidos:{$nin:["morena","pvem","pt"]}})
