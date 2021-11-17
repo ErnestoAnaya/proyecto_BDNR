@@ -368,7 +368,7 @@ db.iniciativas_todos.find({"partidos.3": {$exists: true}}).count();
 - Existen 303 en las cuales al menos cuatro de los seis partidos participan, analizar en las cuales esta al menos 1 de la oposicion + 1 de morena
 - coaliciones.
 
-18. Número de propuestas aprobada después del primer confinamiento el 16 de Marzo del 2020
+18. Número de propuestas aprobada después del primer confinamiento el 16 de Marzo del 2020 por año
 
 ```javascript
 db.iniciativasaprobadas.aggregate(
@@ -381,4 +381,22 @@ db.iniciativasaprobadas.aggregate(
   {$match: {fecha: {$gte: ISODate("2020-03-16T00:00:00")}}},
   {$group: {_id: {year: "$year"}, Propuestas: {$sum: 1}}}
 );
+```
+
+19. Análisis de propuestas por coalición y propuestas en donde ambas coinciden
+
+```Javascript
+  const coaliciones = [
+    {
+        nombre : "Juntos Haremos Historia",
+        integrantes : ["Morena","PT","PVEM"]
+    },
+    {
+        nombre: "Va por México",
+        integrantes : ["PAN","PRI","PRD","MC"]
+    }
+  ]
+
+db.iniciativas_todos.find({partidos:{$nin:["pan","pri","prd","mc"]}})
+
 ```
