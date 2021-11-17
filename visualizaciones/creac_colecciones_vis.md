@@ -52,7 +52,7 @@ db.iniciativasaprobadas.aggregate(
       _id: {year: "$year_int", trimestre: "$trimestre"},
       count: {$count: {}},
     },
-  },{$out: ''}
+  },{$out: 'trimestres_vis'}
 );
 ```
 
