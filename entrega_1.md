@@ -62,8 +62,8 @@ db.iniciativasaprobadas.aggregate(
   {$addFields: {conv_date: {$toDate: "$date_anounced"}}},
   // substr del mes y año.
   {$addFields: {month: {$substr: ["$conv_date", 5, 2]}}}, //mes
-  {$addFields: {year: {$substr: ["$conv_date", 1, 4]}}}, //año
-  //{ $addFields: {'year_int':{$toInt: '$year'} } },
+  {$addFields: {year: {$substr: ["$conv_date", 0, 4]}}}, //año
+  {$addFields: {'year_int':{$toInt: '$year'} } },
   {$addFields: {month_int: {$toInt: "$month"}}},
   //Dividimons en "trimestres"
   {
