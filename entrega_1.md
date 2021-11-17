@@ -357,6 +357,8 @@ db.iniciativas_todos.find({"partidos.3": {$exists: true}}).count();
 - Existen 303 en las cuales al menos cuatro de los seis partidos participan, analizar en las cuales esta al menos 1 de la oposicion + 1 de morena
 - coaliciones.
 
+## Análizis de criterios
+
 18. Número de propuestas aprobada después del primer confinamiento el 16 de Marzo del 2020 por año
 
 ```javascript
