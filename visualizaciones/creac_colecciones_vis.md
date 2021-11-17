@@ -4,14 +4,14 @@ Por sexenio (solo correr este código y luego ya el notebook)
 
 ```javascript
 //EPN
-db.iniciativasaprobadas.aggregate( { $addFields: { fecha: { $toDate: "$date_anounced" } } }, { $match: { fecha: { $lt: ISODate("2018-12-01T00:00:00") } } }, {$group: {_id: "EPN", count: {$count: {}}}}, {$out:'sexenio_vis'});
+db.iniciativasaprobadas.aggregate( { $addFields: { fecha: { $toDate: "$date_anounced" } } }, { $match: { fecha: { $lt: ISODate("2018-12-01T00:00:00") } } }, {$group: {_id: "EPN", count: {$count: {}}}}, {$out:'sexenios_vis'});
 //AMLO
-db.iniciativasaprobadas.aggregate( { $addFields: { fecha: { $toDate: "$date_anounced" } } }, { $match: { fecha: { $gte: ISODate("2018-12-01T00:00:00") } } }, {$group: {_id: "AMLO", count: {$count: {}}}}, {$merge: {into: "sexenio_vis"}});
+db.iniciativasaprobadas.aggregate( { $addFields: { fecha: { $toDate: "$date_anounced" } } }, { $match: { fecha: { $gte: ISODate("2018-12-01T00:00:00") } } }, {$group: {_id: "AMLO", count: {$count: {}}}}, {$merge: {into: "sexenios_vis"}});
 //desechadas
 //EPN
-db.iniciativasdesechadas.aggregate( { $addFields: { fecha: { $toDate: "$date_anounced" } } }, { $match: { fecha: { $lt: ISODate("2018-12-01T00:00:00") } } }, {$group: {_id: "EPN", count: {$count: {}}}}, {$out:'sexenio_des_vis'});
+db.iniciativasdesechadas.aggregate( { $addFields: { fecha: { $toDate: "$date_anounced" } } }, { $match: { fecha: { $lt: ISODate("2018-12-01T00:00:00") } } }, {$group: {_id: "EPN", count: {$count: {}}}}, {$out:'sexenios_des_vis'});
 //AMLO
-db.iniciativasdesechadas.aggregate( { $addFields: { fecha: { $toDate: "$date_anounced" } } }, { $match: { fecha: { $gte: ISODate("2018-12-01T00:00:00") } } }, {$group: {_id: "AMLO", count: {$count: {}}}}, {$merge: {into: "sexenio_des_vis"}});
+db.iniciativasdesechadas.aggregate( { $addFields: { fecha: { $toDate: "$date_anounced" } } }, { $match: { fecha: { $gte: ISODate("2018-12-01T00:00:00") } } }, {$group: {_id: "AMLO", count: {$count: {}}}}, {$merge: {into: "sexenios_des_vis"}});
 ```
 
 Por trimestre
